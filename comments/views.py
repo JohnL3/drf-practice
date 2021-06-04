@@ -19,10 +19,10 @@ class CommentList(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
-    def get_serializer_context(self):
-        context = super(CommentList, self).get_serializer_context()
-        context.update({'request': self.request})
-        return context
+    # def get_serializer_context(self):
+    #     context = super(CommentList, self).get_serializer_context()
+    #     context.update({'request': self.request})
+    #     return context
 
 
 class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -35,7 +35,7 @@ class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsOwnerOrReadOnly]
     queryset = Comment.objects.all()
 
-    def get_serializer_context(self):
-        context = super(CommentDetail, self).get_serializer_context()
-        context.update({'request': self.request})
-        return context
+    # def get_serializer_context(self):
+    #     context = super(CommentDetail, self).get_serializer_context()
+    #     context.update({'request': self.request})
+    #     return context
