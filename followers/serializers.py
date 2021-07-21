@@ -7,9 +7,9 @@ class FollowerSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
     followed_name = serializers.ReadOnlyField(source='followed.username')
 
-    def get_is_owner(self, obj):
-        request = self.context['request']
-        return request.user == obj.owner
+    # def get_is_owner(self, obj):
+    #     request = self.context['request']
+    #     return request.user == obj.owner
 
     class Meta:
         model = Follower
