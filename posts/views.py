@@ -34,5 +34,9 @@ class PostList(generics.ListCreateAPIView):
 
 class PostDetail(generics.RetrieveDestroyAPIView):
     permission_classes = [IsOwnerOrReadOnly]
-    queryset = Post.objects.all()
+    # queryset = Post.objects.all()
     serializer_class = PostSerializer
+    queryset = Post.objects.annotate(
+        comments_count=Count('comment', distinct=True),
+        likes_count=Count('likes', distinct=True)
+    ).order_by('created_at')
