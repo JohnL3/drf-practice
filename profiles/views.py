@@ -15,11 +15,11 @@ class ProfileList(generics.ListCreateAPIView):
     we cant use it twice so insetead we refer to the realated_name of the fields
     in the Follower model
     '''
-    q = Profile.objects.annotate(posts_count=Count('owner__post', distinct=True))
-    print(q.query)
-    q = Profile.objects.filter(owner_id=5)
-    print(q.query)
-    print(q)
+    # q = Profile.objects.annotate(posts_count=Count('owner__post', distinct=True))
+    # print(q.query)
+    # q = Profile.objects.filter(owner_id=5)
+    # print(q.query)
+    # print(q)
     queryset = Profile.objects.annotate(
         posts_count=Count('owner__post', distinct=True),
         followers_count=Count('owner__followed', distinct=True),
@@ -30,8 +30,8 @@ class ProfileList(generics.ListCreateAPIView):
     serializer_class = ProfileSerializer
     filter_backends = [filters.OrderingFilter, DjangoFilterBackend]
     filterset_fields = [
-        'owner__followed__owner__profile',
-        'owner__following__followed__profile'
+        'owner__following__followed__profile',
+        # 'owner__followed__owner__profile',
     ]
     ordering_fields = [
             'posts_count',
