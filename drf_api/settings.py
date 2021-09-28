@@ -41,7 +41,8 @@ ALLOWED_HOSTS = [
 
 if 'CLIENT_ORIGIN' in os.environ:
     CORS_ALLOWED_ORIGINS = [
-        os.environ.get('CLIENT_ORIGIN')
+        os.environ.get('CLIENT_ORIGIN'),
+        os.environ.get('CLIENT_ORIGIN_DEV'),
     ]
 else:
     CORS_ALLOWED_ORIGIN_REGEXES = [
