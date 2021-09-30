@@ -7,7 +7,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 # pylint: disable=no-member
 
 
-class ProfileList(generics.ListCreateAPIView):
+class ProfileList(generics.ListAPIView):
     # queryset = Profile.objects.all()
     '''
     owner refers to the field, post refers to the model
@@ -42,7 +42,7 @@ class ProfileList(generics.ListCreateAPIView):
         ]
 
 
-class ProfileDetail(generics.RetrieveAPIView):
+class ProfileDetail(generics.RetrieveUpdateAPIView):
     permission_classes = [IsOwnerOrReadOnly]
     # queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
